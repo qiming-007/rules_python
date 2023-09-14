@@ -192,11 +192,6 @@ def _python_repository_impl(rctx):
                     fail("Could not determine current user ID. 'id -u' error msg: {}".format(
                         exec_result.stderr,
                     ))
-                uid = int(exec_result.stdout.strip())
-                if uid == 0:
-                    fail("The current user is root, please run as non-root when using the hermetic Python interpreter. See https://github.com/bazelbuild/rules_python/pull/713.")
-                else:
-                    fail("The current user has CAP_DAC_OVERRIDE set, please drop this capability when using the hermetic Python interpreter. See https://github.com/bazelbuild/rules_python/pull/713.")
 
     python_bin = "python.exe" if ("windows" in platform) else "bin/python3"
 
